@@ -21,7 +21,7 @@ Una aplicación web de diccionario construida con Next.js, TypeScript y Redux.
 1. Clona el repositorio:
 
    ```bash
-   git clone <url-del-repositorio>
+   git clone <https://github.com/Nestor2018/dictionary>
    ```
 
 2. Instala las dependencias:
@@ -66,6 +66,7 @@ Una aplicación web de diccionario construida con Next.js, TypeScript y Redux.
   Ejecuta los tests utilizando Jest y Testing Library
 
 - Linting:
+
   ```bash
   npm run lint
   ```
