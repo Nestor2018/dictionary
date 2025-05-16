@@ -6,24 +6,29 @@ const ThemeToggle = () => {
   const dispatch = useAppDispatch();
   const { theme } = useAppSelector((state) => state.theme);
 
-  console.log("theme", theme);
   const isDarkMode = theme === "dark";
-  console.log("isDarkMode", isDarkMode);
 
   useEffect(() => {
-    console.log("useEffect theme", theme);
-    // Verificar si el usuario tiene preferencia de tema oscuro
-    const prefersDarkMode = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
+    const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    
+    // Función para manejar cambios en la preferencia
+    const handleThemeChange = (e: MediaQueryListEvent | MediaQueryList) => {
+      dispatch(setTheme(e.matches ? "dark" : "light"));
+    };
 
-    if (prefersDarkMode) {
-      dispatch(setTheme("light"));
-    }
-  }, []);
+    // Verificar el estado inicial
+    handleThemeChange(darkModeMediaQuery);
+
+    // Escuchar cambios en la preferencia del sistema
+    darkModeMediaQuery.addEventListener("change", handleThemeChange);
+
+    // Limpieza al desmontar
+    return () => {
+      darkModeMediaQuery.removeEventListener("change", handleThemeChange);
+    };
+  }, [dispatch]);
 
   const handleToggleTheme = () => {
-    console.log("click");
     dispatch(toggleTheme());
   };
 
@@ -79,4 +84,3 @@ const ThemeToggle = () => {
 };
 
 export default ThemeToggle;
-

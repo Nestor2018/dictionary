@@ -88,4 +88,3 @@ const dictionarySlice = createSlice({
 export const { resetState, clearHistory, addToHistory } =
   dictionarySlice.actions;
 export default dictionarySlice.reducer;
-

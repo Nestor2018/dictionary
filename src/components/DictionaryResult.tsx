@@ -1,5 +1,5 @@
-import { WordData } from '../types/dictionary';
-import AudioButton from './ui/AudioButton';
+import { WordData } from "../types/dictionary";
+import AudioButton from "./ui/AudioButton";
 
 interface DictionaryResultProps {
   data: WordData;
@@ -7,7 +7,7 @@ interface DictionaryResultProps {
 
 const DictionaryResult = ({ data }: DictionaryResultProps) => {
   // Encontrar el primer audio disponible
-  const audioUrl = data.phonetics.find(p => p.audio)?.audio || '';
+  const audioUrl = data.phonetics.find((p) => p.audio)?.audio || "";
 
   return (
     <div className="mt-10">
@@ -33,17 +33,20 @@ const DictionaryResult = ({ data }: DictionaryResultProps) => {
                 <li key={defIndex} className="pl-2">
                   <p>{def.definition}</p>
                   {def.example && (
-                    <p className="text-slate-500 dark:text-slate-400 mt-2">"{def.example}"</p>
+                    <p className="text-slate-500 dark:text-slate-400 mt-2">
+                      "{def.example}"
+                    </p>
                   )}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Verificar si hay sinónimos en las definiciones */}
           {meaning.synonyms && meaning.synonyms.length > 0 && (
             <div className="mt-6 flex flex-wrap">
-              <h3 className="text-slate-500 dark:text-slate-400 mr-6">Synonyms</h3>
+              <h3 className="text-slate-500 dark:text-slate-400 mr-6">
+                Synonyms
+              </h3>
               <div className="flex flex-wrap gap-2">
                 {meaning.synonyms.map((synonym, synIndex) => (
                   <span key={synIndex} className="text-purple-500 font-bold">
@@ -59,14 +62,29 @@ const DictionaryResult = ({ data }: DictionaryResultProps) => {
       {data.sourceUrls.length > 0 && (
         <div className="mt-8 pt-4 border-t border-slate-200 dark:border-slate-700">
           <p className="text-slate-500 dark:text-slate-400 text-sm">
-            Source{' '}
+            Source{" "}
             <a
               href={data.sourceUrls[0]}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline text-slate-600 dark:text-slate-300 ml-2"
+              className="underline text-slate-600 dark:text-slate-300 ml-2 inline-flex items-center"
             >
               {data.sourceUrls[0]}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                className="ml-1"
+                fill="currentColor"
+              >
+                <path
+                  d="M6.6 2H2.4C1.6268 2 1 2.6268 1 3.4V9.6C1 10.3732 1.6268 11 2.4 11H8.6C9.3732 11 10 10.3732 10 9.6V5.4M7 1H11M11 1V5M11 1L5 7"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  fill="none"
+                />
+              </svg>
             </a>
           </p>
         </div>
@@ -76,3 +94,4 @@ const DictionaryResult = ({ data }: DictionaryResultProps) => {
 };
 
 export default DictionaryResult;
+

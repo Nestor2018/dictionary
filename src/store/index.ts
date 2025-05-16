@@ -20,8 +20,8 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  blacklist: [], // No persistimos el estado del diccionario
-  whitelist: ["theme", "font", "dictionary"], // Persistimos solo el tema y la fuente
+  blacklist: [],
+  whitelist: ["theme", "font", "dictionary"], // Persistimos los datos
 };
 
 const rootReducer = combineReducers({
@@ -46,4 +46,3 @@ export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
